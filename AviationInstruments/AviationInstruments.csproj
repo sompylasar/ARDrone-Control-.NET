@@ -52,8 +52,8 @@
     <Compile Include="AttitudeIndicatorInstrumentControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="AvionicsInstrumentsControlsRessources.Designer.cs">
-      <DependentUpon>AvionicsInstrumentsControlsRessources.resx</DependentUpon>
+    <Compile Include="AvionicsInstrumentsControlsResources.Designer.cs">
+      <DependentUpon>AvionicsInstrumentsControlsResources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -74,9 +74,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AvionicsInstrumentsControlsRessources.resx">
+    <EmbeddedResource Include="AvionicsInstrumentsControlsResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AvionicsInstrumentsControlsRessources.Designer.cs</LastGenOutput>
+      <LastGenOutput>AvionicsInstrumentsControlsResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
@@ -90,7 +90,7 @@
     <None Include="Resources\Altimeter_Background.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Bandeau_Derouleur.bmp" />
+    <None Include="Resources\Digits.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HeadingIndicator_Aircraft.bmp" />

@@ -27,10 +27,10 @@ namespace AviationInstruments
         float TurnQuality;
 
         // Images
-        Bitmap bmpCadran = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsRessources.TurnCoordinator_Background);
-        Bitmap bmpBall = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsRessources.TurnCoordinatorBall);
-        Bitmap bmpAircraft = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsRessources.TurnCoordinatorAircraft);
-        Bitmap bmpMarks = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsRessources.TurnCoordinatorMarks);
+        Bitmap bmpCadran = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsResources.TurnCoordinator_Background);
+        Bitmap bmpBall = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsResources.TurnCoordinatorBall);
+        Bitmap bmpAircraft = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsResources.TurnCoordinatorAircraft);
+        Bitmap bmpMarks = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsResources.TurnCoordinatorMarks);
 
         #endregion
 

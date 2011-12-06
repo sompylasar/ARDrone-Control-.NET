@@ -28,9 +28,9 @@ namespace AviationInstruments
 		double RollAngle = 0; // Theta
 
         // Images
-        Bitmap bmpCadran = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsRessources.Horizon_Background);
-        Bitmap bmpBoule = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsRessources.Horizon_GroundSky);
-        Bitmap bmpAvion = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsRessources.Maquette_Avion);
+        Bitmap bmpCadran = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsResources.Horizon_Background);
+        Bitmap bmpBoule = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsResources.Horizon_GroundSky);
+        Bitmap bmpAvion = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsResources.Maquette_Avion);
 
         #endregion
 

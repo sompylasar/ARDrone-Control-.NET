@@ -27,9 +27,9 @@ namespace AviationInstruments
         int Heading; 
 
         // Images
-        Bitmap bmpCadran = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsRessources.HeadingIndicator_Background);
-        Bitmap bmpHedingWeel = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsRessources.HeadingWeel);
-        Bitmap bmpAircaft = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsRessources.HeadingIndicator_Aircraft);        
+        Bitmap bmpCadran = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsResources.HeadingIndicator_Background);
+        Bitmap bmpHedingWeel = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsResources.HeadingWeel);
+        Bitmap bmpAircaft = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsResources.HeadingIndicator_Aircraft);        
 
         #endregion
 

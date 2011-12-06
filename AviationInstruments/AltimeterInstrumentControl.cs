@@ -27,10 +27,10 @@ namespace AviationInstruments
         int altitude; 
 
         // Images
-        Bitmap bmpCadran = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsRessources.Altimeter_Background);
-        Bitmap bmpSmallNeedle = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsRessources.SmallNeedleAltimeter);
-        Bitmap bmpLongNeedle = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsRessources.LongNeedleAltimeter);
-        Bitmap bmpScroll = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsRessources.Bandeau_Dérouleur);
+        Bitmap bmpCadran = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsResources.Altimeter_Background);
+        Bitmap bmpSmallNeedle = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsResources.SmallNeedleAltimeter);
+        Bitmap bmpLongNeedle = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsResources.LongNeedleAltimeter);
+        Bitmap bmpScroll = new Bitmap(AviationInstruments.AvionicsInstrumentsControlsResources.Digits);
 
         #endregion
 
