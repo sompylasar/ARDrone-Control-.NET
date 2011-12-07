@@ -121,15 +121,27 @@ namespace ARDrone.Input
         {
             List<GenericInput> newDevices = new List<GenericInput>();
 
-            newDevices.AddRange(KeyboardInput.GetNewInputDevices(windowHandle, inputDevices));
-            newDevices.AddRange(JoystickInput.GetNewInputDevices(windowHandle, inputDevices));
-            newDevices.AddRange(WiiMoteInput.GetNewInputDevices(windowHandle, inputDevices));
-            newDevices.AddRange(SpeechInput.GetNewInputDevices(windowHandle, inputDevices));
+            AddNewDevicesOfKind(newDevices, KeyboardInput.GetNewInputDevices);
+            AddNewDevicesOfKind(newDevices, JoystickInput.GetNewInputDevices);
+            AddNewDevicesOfKind(newDevices, WiiMoteInput.GetNewInputDevices);
+            AddNewDevicesOfKind(newDevices, SpeechInput.GetNewInputDevices);
 
             foreach (GenericInput inputDevice in newDevices)
             {
                 AddInputDevice(inputDevice);
                 InitInputDevice(inputDevice);
+            }
+        }
+
+        private void AddNewDevicesOfKind(List<GenericInput> newDevices, Func<IntPtr, List<GenericInput>, List<GenericInput>> getter)
+        {
+            try
+            {
+                newDevices.AddRange(getter(windowHandle, inputDevices));
+            }
+            catch (Exception)
+            {
+                // Note: ignore exceptions
             }
         }
 
