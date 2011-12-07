@@ -32,7 +32,7 @@ namespace ARDrone.Input
         private InputState lastInputState = null;
 
         private Thread inputThread = null;
-        private bool inputThreadEnded = false;
+        private ManualResetEvent inputThreadShouldEnd = new ManualResetEvent(false);
 
         private InputMode currentInputMode = InputMode.NoInput;
         private String currentDeviceIdToListenTo = AllDevices;
@@ -57,14 +57,18 @@ namespace ARDrone.Input
 
         private void StartInputThread()
         {
+            StopInputThread();
+
+            inputThreadShouldEnd.Reset();
+
             inputThread = new Thread(CollectInputByThread);
             inputThread.Start();
-            inputThreadEnded = false;
         }
 
         public void Dispose()
         {
             StopInputThread();
+
             for (int i = 0; i < inputDevices.Count; i++)
             {
                 inputDevices[i].Dispose();
@@ -73,10 +77,13 @@ namespace ARDrone.Input
 
         private void StopInputThread()
         {
-            inputThreadEnded = true;
             if (inputThread != null)
             {
+                inputThreadShouldEnd.Set();
+
                 inputThread.Join();
+
+                inputThread = null;
             }
         }
 
@@ -171,17 +178,12 @@ namespace ARDrone.Input
         private void CollectInputByThread()
         {
             int iterationCount = 0;
-            while (true)
+
+            while (!inputThreadShouldEnd.WaitOne(50))
             {
                 UpdateAllInput(iterationCount);
 
-                if (inputThreadEnded)
-                {
-                    break;
-                }
-
                 iterationCount++;
-                Thread.Sleep(50);
             }
         }
 

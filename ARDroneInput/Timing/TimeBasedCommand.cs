@@ -18,9 +18,10 @@ namespace ARDrone.Input.Timing
     public class TimeBasedCommand
     {
         private Thread commandThread;
-        private Object synchronizer = new Object();
-        private bool disposed = false;
+        private ManualResetEvent commandThreadShouldEnd = new ManualResetEvent(false);
 
+        private Object synchronizer = new Object();
+        
         private String currentCommand = null;
         private TimeSpan currentDuration;
         private DateTime currentCommandStart;
@@ -41,20 +42,30 @@ namespace ARDrone.Input.Timing
 
         private void StartCommandThread()
         {
+            EndCommandThread();
+
+            commandThreadShouldEnd.Reset();
+
             commandThread = new Thread(new ThreadStart(UpdateCommandsThreaded));
             commandThread.Start();
         }
 
         private void EndCommandThread()
         {
-            disposed = true;
-
-            try
+            if (commandThread != null)
             {
-                commandThread.Join();
+                commandThreadShouldEnd.Set();
+
+                try
+                {
+                    commandThread.Join();
+                }
+                catch (Exception)
+                {
+                }
+
+                commandThread = null;
             }
-            catch (Exception)
-            { }
         }
 
         private void UpdateCommandsThreaded()
@@ -63,11 +74,8 @@ namespace ARDrone.Input.Timing
             String desiredCommand;
             TimeSpan desiredDuration;
 
-            while (true)
+            while (!commandThreadShouldEnd.WaitOne(100))
             {
-                if (disposed)
-                    break;
-
                 lock (synchronizer)
                 {
                     desiredCommand = this.desiredCommand;
@@ -80,8 +88,6 @@ namespace ARDrone.Input.Timing
 
                 SetNewCommand(cancelDesired, desiredCommand, desiredDuration);
                 RemoveDeprecatedCommand();
-
-                Thread.Sleep(100);
             }
         }
 

@@ -22,6 +22,9 @@ namespace AviationInstruments
 {
     public class InstrumentsManager
     {
+        private Thread workerThread;
+        private ManualResetEvent workerThreadShouldEnd = new ManualResetEvent(false);
+
         private DroneControl droneControl;
         private List<InstrumentControl> instrumentList;
 
@@ -41,39 +44,37 @@ namespace AviationInstruments
 
         public void startManage()
         {
-            lock (stateLock)
-            {
-                shouldThreadBeTerminated = false;
-            }
+            stopManage();
 
-            Thread workerThread = new Thread(this.manage);
+            workerThreadShouldEnd.Reset();
+
+            workerThread = new Thread(this.manage);
             workerThread.Start();
         }
 
         public void stopManage()
         {
-            lock (stateLock)
+            if (workerThread != null)
             {
-                shouldThreadBeTerminated = true;
+                workerThreadShouldEnd.Set();
+
+                try
+                {
+                    workerThread.Join();
+                }
+                catch
+                {
+                }
+
+                workerThread = null;
             }
         }
 
         private void manage()
         {
-            bool localStop = false;
-            lock (stateLock)
+            while (!workerThreadShouldEnd.WaitOne(100))
             {
-                localStop = shouldThreadBeTerminated;
-            }
-
-            while (!localStop)
-            {
-                lock (stateLock)
-                {
-                    localStop = shouldThreadBeTerminated;
-                }
                 this.updateInstruments();
-                Thread.Sleep(100);
             }
         }
 
@@ -81,7 +82,7 @@ namespace AviationInstruments
         {
             DroneData droneData = null;
             if (droneControl.IsConnected)
-               droneData = droneControl.NavigationData;
+                droneData = droneControl.NavigationData;
             else
                 droneData = new DroneData();
 
