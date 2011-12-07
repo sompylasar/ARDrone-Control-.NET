@@ -72,6 +72,8 @@ namespace ARDrone.Control.Data
 
         public DroneData()
         {
+            DroneState = DroneState.Init;
+            
             phi = 0.0;
             psi = 0.0;
             theta = 0.0;
