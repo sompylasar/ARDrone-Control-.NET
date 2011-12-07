@@ -119,7 +119,7 @@ namespace AviationInstruments
 
         private void updateInstrument(AttitudeIndicatorInstrumentControl control, DroneData droneData)
         {
-            control.Invoke((MethodInvoker)delegate
+            control.BeginInvoke((MethodInvoker)delegate
             {
                 control.SetAttitudeIndicatorParameters((droneData.Theta), -(droneData.Phi));
             });
@@ -127,16 +127,15 @@ namespace AviationInstruments
 
         private void updateInstrument(AltimeterInstrumentControl control, DroneData droneData)
         {
-            control.Invoke((MethodInvoker)delegate
+            control.BeginInvoke((MethodInvoker)delegate
             {
-
                 control.SetAlimeterParameters(droneData.Altitude);
             });
         }
 
         private void updateInstrument(HeadingIndicatorInstrumentControl control, DroneData droneData)
         {
-            control.Invoke((MethodInvoker)delegate
+            control.BeginInvoke((MethodInvoker)delegate
             {
                 // Psi range -180..0..180 but heading indicator require 0..360
                 if (droneData.Psi > 0)
@@ -153,9 +152,8 @@ namespace AviationInstruments
 
         private void updateInstrument(VerticalSpeedIndicatorInstrumentControl control, DroneData droneData)
         {
-            control.Invoke((MethodInvoker)delegate
+            control.BeginInvoke((MethodInvoker)delegate
             {
-
                 control.SetVerticalSpeedIndicatorParameters(Convert.ToInt32(droneData.vZ));
             });
         }
