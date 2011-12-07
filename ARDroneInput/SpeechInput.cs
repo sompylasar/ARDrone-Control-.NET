@@ -56,10 +56,10 @@ namespace ARDrone.Input
         public SpeechInput()
             : base()
         {
-            timeBasedCommand = new TimeBasedCommand();
-
-            DetermineMapping();
             InitSpeechRecognition();
+            DetermineMapping();
+
+            timeBasedCommand = new TimeBasedCommand();
         }
 
         private void InitSpeechRecognition()
